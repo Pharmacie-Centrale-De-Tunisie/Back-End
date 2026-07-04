@@ -1,0 +1,36 @@
+package tn.validation.Servic;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import tn.validation.Entity.chauffeur;
+import tn.validation.Repository.chauffeurRepo;
+
+import java.util.List;
+
+@Service
+public class chauffeurService implements Servic<chauffeur> {
+    @Autowired
+    private chauffeurRepo chauffeurRepo;
+    @Override
+    public chauffeur add(chauffeur entity) {
+        return chauffeurRepo.save(entity);
+    }
+
+    @Override
+    public chauffeur retrieve(Long id) {
+        return chauffeurRepo.findById(id).orElse(null);
+    }
+
+    @Override
+    public java.util.List retrieveAll() {
+        return chauffeurRepo.findAll();
+    }
+
+    @Override
+    public void remove(Long id) {
+        chauffeurRepo.deleteById(id);
+    }
+    public List<chauffeur> GetDispo() {
+        return chauffeurRepo.findAvailableChauffeur();
+    }
+}
