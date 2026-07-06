@@ -1,5 +1,6 @@
 package tn.validation.Entity;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
@@ -7,7 +8,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 
 public class Mission implements Serializable {
@@ -25,6 +26,14 @@ public class Mission implements Serializable {
     private String product;
     private String type;
     @ManyToOne
-    @JoinColumn(name = "id_chauffeur")
+    @JoinColumn(name = "Chauffeur") // nom de la colonne FK en base
+    @JsonIgnoreProperties("missions") // évite la boucle infinie JSON
     private chauffeur chauffeur;
+    public chauffeur getChauffeur() {
+        return this.chauffeur;
+    }
+    public void setChauffeur(chauffeur chauffeur) {
+        this.chauffeur = chauffeur;
+    }
 }
+

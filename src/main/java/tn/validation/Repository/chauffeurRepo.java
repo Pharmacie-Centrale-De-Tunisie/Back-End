@@ -9,4 +9,5 @@ import java.util.List;
 public interface chauffeurRepo extends JpaRepository<chauffeur, Long> {
     @Query("SELECT c FROM chauffeur c WHERE c.EtatChauffeur = false")
     List<chauffeur> findAvailableChauffeur();
+    chauffeur findByIdChauffeur(Long idChauffeur);
 }

@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.validation.Entity.chauffeur;
 import tn.validation.Repository.chauffeurRepo;
+import tn.validation.Repository.MissionRepo;
+
+import tn.validation.Entity.Mission;
 
 import java.util.List;
 
@@ -11,6 +14,8 @@ import java.util.List;
 public class chauffeurService implements Servic<chauffeur> {
     @Autowired
     private chauffeurRepo chauffeurRepo;
+    @Autowired
+    private  MissionRepo missionRepo;
     @Override
     public chauffeur add(chauffeur entity) {
         return chauffeurRepo.save(entity);
@@ -32,5 +37,16 @@ public class chauffeurService implements Servic<chauffeur> {
     }
     public List<chauffeur> GetDispo() {
         return chauffeurRepo.findAvailableChauffeur();
+    }
+    public Mission affecterMissionAChauffeur(Long missionId, Long chauffeurId) {
+        Mission mission = missionRepo.findById(missionId)
+                .orElseThrow(() -> new RuntimeException("Mission introuvable"));
+
+        chauffeur chauffeur = chauffeurRepo.findById(chauffeurId)
+                .orElseThrow(() -> new RuntimeException("Chauffeur introuvable"));
+
+        mission.setChauffeur(chauffeur);
+
+        return missionRepo.save(mission);
     }
 }

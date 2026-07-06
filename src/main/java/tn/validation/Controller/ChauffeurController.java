@@ -40,4 +40,10 @@ public class ChauffeurController {
         return chauffeurService.GetDispo();
 
     }
+    @PutMapping("/affecterMission/{missionId}/{chauffeurId}")
+    public void affecterMissionAChauffeur(@PathVariable Long missionId, @PathVariable Long chauffeurId) {
+        chauffeurService.affecterMissionAChauffeur(missionId, chauffeurId);
+    }
+
+
 }
