@@ -27,4 +27,12 @@ public class chauffeur implements Serializable {
     private List<Mission> missions;
     @OneToOne
     private Matricule matricule;
+
+    public boolean getEtatChauffeur() {
+        return EtatChauffeur;
+    }
+
+    public void setEtatChauffeur(boolean etatChauffeur) {
+        EtatChauffeur = etatChauffeur;
+    }
 }

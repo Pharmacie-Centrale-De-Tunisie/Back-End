@@ -46,7 +46,7 @@ public class chauffeurService implements Servic<chauffeur> {
                 .orElseThrow(() -> new RuntimeException("Chauffeur introuvable"));
 
         mission.setChauffeur(chauffeur);
-
+        chauffeur.setEtatChauffeur(true);
         return missionRepo.save(mission);
     }
 }
