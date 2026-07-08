@@ -6,6 +6,9 @@ import tn.validation.Servic.user;
 
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin(origins = "http://localhost:4200", methods = {
+        RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE
+})
 public class ControllerUser {
     private final user userService;
     public ControllerUser(user userService) {

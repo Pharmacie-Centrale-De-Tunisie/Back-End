@@ -8,6 +8,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/matricule")
+@CrossOrigin(origins = "http://localhost:4200", methods = {
+        RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE
+})
 public class ControllerMatricule {
     private final MaticuleService matriculeService;
     public ControllerMatricule(MaticuleService matriculeService) {
