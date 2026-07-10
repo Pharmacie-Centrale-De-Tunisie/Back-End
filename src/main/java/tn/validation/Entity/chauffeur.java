@@ -1,6 +1,7 @@
 package tn.validation.Entity;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
@@ -26,13 +27,48 @@ public class chauffeur implements Serializable {
     @JsonIgnore
     private List<Mission> missions;
     @OneToOne
+    @JsonIgnoreProperties("chauffeurDesMatricules")
     private Matricule matricule;
 
+
+    public String getNomChauffeur() {
+        return nomChauffeur;
+    }
+
+    public void setNomChauffeur(String nomChauffeur) {
+        this.nomChauffeur = nomChauffeur;
+    }
+    public String getPrenomChauffeur() {
+        return prenomChauffeur;
+    }
+    public void setPrenomChauffeur(String prenomChauffeur) {
+        this.prenomChauffeur = prenomChauffeur;
+    }
+    public String getCin() {
+        return Cin;
+    }
+    public void setCin(String cin) {
+        Cin = cin;
+    }
+    public String getNumeroTelephone() {
+        return NumeroTelephone;
+    }
+    public void setNumeroTelephone(String numeroTelephone) {
+        NumeroTelephone = numeroTelephone;
+    }
     public boolean getEtatChauffeur() {
         return EtatChauffeur;
     }
 
     public void setEtatChauffeur(boolean etatChauffeur) {
         EtatChauffeur = etatChauffeur;
+    }
+
+    public Long getIdChauffeur() {
+        return idChauffeur;
+    }
+
+    public void setMatricule(Matricule matricule) {
+        this.matricule = matricule;
     }
 }

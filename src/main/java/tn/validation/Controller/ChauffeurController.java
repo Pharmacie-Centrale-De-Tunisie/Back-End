@@ -38,15 +38,33 @@ public class ChauffeurController {
     public void deleteChauffeur(@PathVariable Long id) {
         chauffeurService.remove(id);
     }
+
+
     @GetMapping("/available")
     public List<chauffeur> getAvailableChauffeurs() {
         return chauffeurService.GetDispo();
 
     }
+
+
     @PutMapping("/affecterMission/{missionId}/{chauffeurId}")
     public void affecterMissionAChauffeur(@PathVariable Long missionId, @PathVariable Long chauffeurId) {
         chauffeurService.affecterMissionAChauffeur(missionId, chauffeurId);
     }
+
+
+    @GetMapping("/update/{id}")
+    public chauffeur updateChauffeur(@RequestBody chauffeur c, @PathVariable Long id)
+    {
+        return chauffeurService.update(c, id);
+    }
+
+
+    @GetMapping("/check/{cin}")
+    public boolean checkCinExists(@PathVariable String cin) {
+        return chauffeurService.checkCinExists(cin);
+    }
+
 
 
 }

@@ -1,5 +1,6 @@
 package tn.validation.Controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.validation.Entity.Matricule;
 import tn.validation.Servic.MaticuleService;
@@ -33,9 +34,18 @@ public class ControllerMatricule {
         matriculeService.remove(id);
     }
 
-        @GetMapping("/available")
+    @GetMapping("/available")
         public List<Matricule> getAvailableMatricules() {
             return matriculeService.GetDispo();
         }
+    @PutMapping("/Update/{id}")
+    public ResponseEntity<Matricule> update(@RequestBody Matricule m, @PathVariable Long id) {
+        Matricule updated = matriculeService.update(m, id);
+        return ResponseEntity.ok(updated);
+    }
+    @PutMapping("/affecterMatriculeToChauffeur/{matriculeId}/{chauffeurId}")
+    public void affecterMatriculeToChauffeur(@PathVariable Long matriculeId, @PathVariable Long chauffeurId) {
+        matriculeService.affecterMatriculeAChauffeur(matriculeId, chauffeurId);
+    }
 
 }

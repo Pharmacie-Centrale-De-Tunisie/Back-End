@@ -49,4 +49,18 @@ public class chauffeurService implements Servic<chauffeur> {
         chauffeur.setEtatChauffeur(true);
         return missionRepo.save(mission);
     }
+    public chauffeur update(chauffeur c, Long id) {
+        chauffeur existing = chauffeurRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Chauffeur non trouvé avec l'id : " + id));
+
+        existing.setNomChauffeur(c.getNomChauffeur());
+        existing.setPrenomChauffeur(c.getPrenomChauffeur());
+        existing.setCin(c.getCin());
+        existing.setNumeroTelephone(c.getNumeroTelephone());
+
+        return chauffeurRepo.save(existing);
+    }
+    public boolean checkCinExists(String cin) {
+        return chauffeurRepo.existsByCin(cin);
+    }
 }
